@@ -23,6 +23,7 @@ private:
 
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector& HitLocation);
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 	ATank* GetControlledTank() const;
 
 	virtual void BeginPlay() override;
