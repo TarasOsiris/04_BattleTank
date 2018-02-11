@@ -3,29 +3,27 @@
 ATank::ATank()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
 }
 
-void ATank::AimAt(FVector HitLocation)
+void ATank::AimAt(FVector HitLocation) const
 {
-	auto OurTankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s Aim at hit Location: %s"), *OurTankName, *HitLocation.ToString());
+	TankAimingComponent->AimAt(HitLocation);
 }
 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 

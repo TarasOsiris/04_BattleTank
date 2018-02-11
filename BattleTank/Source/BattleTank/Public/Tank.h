@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "TankAimingComponent.h"
 #include "Tank.generated.h"
 
 UCLASS()
@@ -13,7 +14,10 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	ATank();
-	void AimAt(FVector HitLocation);
+	void AimAt(FVector HitLocation) const;
+
+protected:
+	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
 	virtual void BeginPlay() override;
