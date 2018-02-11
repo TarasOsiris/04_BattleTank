@@ -1,14 +1,14 @@
 #include "TankAimingComponent.h"
 #include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "TankBarrel.h"
 
 UTankAimingComponent::UTankAimingComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
-
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -35,9 +35,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) const
 	}
 }
 
-void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) const 
+void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection) const
 {
 	auto BarrelRotation = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotation;
+
+	Barrel->Elevate(5);
 }
