@@ -17,13 +17,16 @@ public:
 	void AimAt(FVector HitLocation) const;
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+		void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
-	UTankAimingComponent* TankAimingComponent = nullptr;
+	UTankAimingComponent * TankAimingComponent = nullptr;
 
 private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 100000;
 };

@@ -14,7 +14,7 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 
 public:	
 	UTankAimingComponent();
-	void AimAt(FVector HitLocation) const;
+	void AimAt(FVector HitLocation, float LaunchSpeed) const;
 
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
