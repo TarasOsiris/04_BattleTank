@@ -5,6 +5,12 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+void ATank::AimAt(FVector HitLocation)
+{
+	auto OurTankName = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("%s Aim at hit Location: %s"), *OurTankName, *HitLocation.ToString());
+}
+
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
