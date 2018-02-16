@@ -16,7 +16,7 @@ public:
 	
 private:
 	UPROPERTY(EditAnywhere, Category = Setup)
-		float MaxDegreesPerSecond = 25;
+		float MaxDegreesPerSecond = 10;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 		float MinElevationDegrees = 0;
