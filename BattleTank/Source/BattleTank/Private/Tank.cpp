@@ -3,6 +3,7 @@
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
+#include "Runtime/Engine/Classes/GameFramework/ProjectileMovementComponent.h"
 
 ATank::ATank()
 {
@@ -35,9 +36,10 @@ void ATank::Fire()
 		return;
 	}
 
-	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, 
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 		Barrel->GetSocketLocation(FName("Projectile")), 
 		Barrel->GetSocketRotation(FName("Projectile")));
+	Projectile->Launch(LaunchSpeed);
 }
 
 void ATank::BeginPlay()
