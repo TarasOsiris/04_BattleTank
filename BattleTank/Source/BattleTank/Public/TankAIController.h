@@ -21,5 +21,5 @@ private:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditDefaultsOnly)
-	float AcceptanceRadius = 30000.0f;
+	float AcceptanceRadius = 3000.0f;
 };
