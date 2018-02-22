@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "TankMovementComponent.h"
 #include "TankTrack.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
@@ -37,11 +35,8 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	auto TankForwardDirection = GetOwner()->GetActorForwardVector().GetSafeNormal();
 	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
 	float ForwardThrow = FVector::DotProduct(AIForwardIntention, TankForwardDirection);
+	IntendMoveForward(ForwardThrow);
 
 	float RightThrow = FVector::CrossProduct(TankForwardDirection, AIForwardIntention).Z;
-
 	IntendTurnRight(RightThrow);
-
-	UE_LOG(LogTemp, Warning, TEXT("ForwardThrow %f"), ForwardThrow);
-	IntendMoveForward(ForwardThrow);
 }
