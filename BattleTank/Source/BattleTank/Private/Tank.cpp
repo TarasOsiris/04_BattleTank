@@ -42,3 +42,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
