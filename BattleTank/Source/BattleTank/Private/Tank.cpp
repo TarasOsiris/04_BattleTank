@@ -11,6 +11,11 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 void ATank::AimAt(FVector HitLocation) const
 {
 	if (!ensure(TankAimingComponent))
@@ -46,10 +51,5 @@ void ATank::Fire()
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
 }
 
