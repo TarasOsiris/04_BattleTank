@@ -16,9 +16,4 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	ATank();
-
-private:
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	void BeginPlay() override;
-
 };

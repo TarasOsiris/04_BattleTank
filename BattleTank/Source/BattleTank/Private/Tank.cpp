@@ -9,14 +9,3 @@ ATank::ATank()
 {
 	PrimaryActorTick.bCanEverTick = false;
 }
-
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
