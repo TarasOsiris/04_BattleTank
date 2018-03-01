@@ -6,7 +6,6 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
-class UTankAimingComponent;
 class UTankBarrel;
 class AProjectile;
 
@@ -17,14 +16,9 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	ATank();
-	void AimAt(FVector HitLocation) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
-
-protected:
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent * TankAimingComponent = nullptr;
 
 private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

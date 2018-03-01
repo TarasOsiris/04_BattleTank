@@ -9,7 +9,7 @@ UTankAimingComponent::UTankAimingComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) const
+void UTankAimingComponent::AimAt(FVector HitLocation) const
 {
 	if (!ensure(Barrel))
 	{
