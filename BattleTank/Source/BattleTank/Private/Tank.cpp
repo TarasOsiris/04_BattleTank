@@ -15,28 +15,6 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ATank::Fire()
-{
-	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-
-	if (!ensure(Barrel))
-	{
-		return;
-	}
-
-	if (bIsReloaded)
-	{
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
-			Barrel->GetSocketLocation(FName("Projectile")),
-			Barrel->GetSocketRotation(FName("Projectile")));
-		Projectile->Launch(LaunchSpeed);
-
-		LastFireTime = FPlatformTime::Seconds();
-
-		UE_LOG(LogTemp, Warning, TEXT("Fire: %f"), FPlatformTime::Seconds());
-	}
-}
-
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

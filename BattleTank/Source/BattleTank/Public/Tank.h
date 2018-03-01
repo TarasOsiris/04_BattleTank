@@ -17,23 +17,8 @@ class BATTLETANK_API ATank : public APawn
 public:
 	ATank();
 
-	UFUNCTION(BlueprintCallable, Category = "Firing")
-		void Fire();
-
 private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-		float LaunchSpeed = 4000;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-		float ReloadTimeInSeconds = 3.0f;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-		TSubclassOf<AProjectile> ProjectileBlueprint;
-
-	UTankBarrel* Barrel = nullptr;
-
-	double LastFireTime = 0;
 };
