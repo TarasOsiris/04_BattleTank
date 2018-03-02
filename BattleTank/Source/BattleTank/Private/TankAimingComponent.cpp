@@ -8,7 +8,24 @@
 
 UTankAimingComponent::UTankAimingComponent()
 {
-	PrimaryComponentTick.bCanEverTick = false;
+	bWantsBeginPlay = true;
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UTankAimingComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	LastFireTime = FPlatformTime::Seconds();
+}
+
+void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Tick"));
+
+	if ((FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds) 
+	{
+		FiringState = EFiringState::Reloading;
+	}
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation) const
@@ -48,15 +65,17 @@ void UTankAimingComponent::Initialize(UTankBarrel * BarrelToSet, UTankTurret * T
 
 void UTankAimingComponent::Fire()
 {
-	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-
-	if (!ensure(Barrel))
+	if (FiringState != EFiringState::Reloading)
 	{
-		return;
-	}
+		if (!ensure(Barrel))
+		{
+			return;
+		}
+		if (!ensure(ProjectileBlueprint))
+		{
+			return;
+		}
 
-	if (bIsReloaded)
-	{
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 			Barrel->GetSocketLocation(FName("Projectile")),
 			Barrel->GetSocketRotation(FName("Projectile")));
