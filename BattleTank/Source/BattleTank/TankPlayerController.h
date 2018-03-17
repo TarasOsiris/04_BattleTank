@@ -15,6 +15,8 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 		void FoundAimingComponent(UTankAimingComponent* AimingComRef);
 
+	virtual void SetPawn(APawn* InPawn) override;
+
 private:
 	UPROPERTY(EditDefaultsOnly)
 	float CrossHairXLocation = 0.5f;
@@ -22,6 +24,9 @@ private:
 	float CrossHairYLocation = 0.33333f;
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.0f;
+
+	UFUNCTION()
+		void OnPossessedTankDeath();
 
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector& HitLocation);

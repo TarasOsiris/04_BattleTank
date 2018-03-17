@@ -1,4 +1,5 @@
 #include "TankPlayerController.h"
+#include "Tank.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "TankAimingComponent.h"
 
@@ -17,6 +18,28 @@ void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
+}
+
+void ATankPlayerController::SetPawn(APawn * InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		ATank* PossessedTank = Cast<ATank>(GetPawn());
+		if (!ensure(PossessedTank))
+		{
+			return;
+		}
+
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnPossessedTankDeath);
+	}
+}
+
+void ATankPlayerController::OnPossessedTankDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player dead"));
+	StartSpectatingOnly();
 }
 
 void ATankPlayerController::AimTowardsCrosshair()
